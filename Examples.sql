@@ -1,5 +1,5 @@
-/* Examples with solutions in SQL
-Easy to Hard*/
+--  Examples with solutions in SQL Easy to Hard
+--  Examples are extracted from Leetcode.com
 
 
 
