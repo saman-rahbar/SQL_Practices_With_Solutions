@@ -85,4 +85,44 @@ For example, given the above Employee table, the nth highest salary where n = 2 
 
  
 
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+RETURN (
 
+SELECT max(Salary)
+FROM Employee Emp1
+WHERE (N-1) = (SELECT COUNT(DISTINCT(Salary)) FROM Employee Emp2 where
+Emp2.Salary > Emp1.Salary)
+);
+END 
+
+
+  
+
+
+
+
+/* Question4 Level of Difficulty >>> Easy
+
+The Employee table holds all employees including their managers. Every employee has an Id, and there is also a column for the manager Id.
+
++----+-------+--------+-----------+
+| Id | Name  | Salary | ManagerId |
++----+-------+--------+-----------+
+| 1  | Joe   | 70000  | 3         |
+| 2  | Henry | 80000  | 4         |
+| 3  | Sam   | 60000  | NULL      |
+| 4  | Max   | 90000  | NULL      |
++----+-------+--------+-----------+
+Given the Employee table, write a SQL query that finds out employees who earn more than their managers. For the above table, Joe is the only employee who earns more than his manager.
+
++----------+
+| Employee |
++----------+
+| Joe    |
++----------+
+*/
+
+
+SELECT Name as Employee FROM Employee E
+WHERE Salary > (SELECT Salary FROM Employee E2 WHERE E.ManagerId = E2.Id);
